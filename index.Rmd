@@ -1,0 +1,173 @@
+**JAWABAN UTS-REGRESSION MODEL**
+
+  *   **Nama:** Ameliatus Sholichah
+  *   **NIM:** A3202300024
+  *   **Matkul:** Regression Model
+
+**SOAL NO 1**
+
+**MEMBUAT CORRELATION MATRIX**
+```{r}
+# Memuat library
+library(ggplot2)
+library(reshape2)
+
+# Membaca data
+data <- read.csv("HeatingOil.csv")
+
+# Menghitung korelasi
+cor_matrix <- cor(data[, c("Heating_Oil", "Insulation", "Temperature", "Num_Occupants", "Avg_Age", "Home_Size")], use = "complete.obs")
+
+# Mengubah matrix jadi format panjang
+melted_cor <- melt(cor_matrix)
+
+# Membuat heatmap
+ggplot(data = melted_cor, aes(x = Var1, y = Var2, fill = value)) +
+  geom_tile(color = "white") +
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white",
+                       midpoint = 0, limit = c(-1, 1), space = "Lab",
+                       name = "Correlation") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
+  coord_fixed() +
+  ggtitle("Correlation Matrix Heatmap")
+
+```
+
+**INTERPRETASI CORRELATION MATRIX**
+
+**Penjelasan dari Hasil Correlation Matrix, Variabel yang Memiliki Korelasi Signifikan dengan jumlah Konsumsi Heating_Oil**
+
+  *  `Avg_Age(Positif):` Semakin tua penghuni rumah, makin tinggi penggunaan Heating_Oil. Kemungkinan karena orang yang lebih tua butuh suhu ruangan yang lebih hangat.
+  *  `Temperature(Negatif):` Suhu makin rendah (lebih dingin) → penggunaan Heating_Oil makin tinggi. Ini masuk akal dan sangat kuat hubungannya.
+  *  `Insulation(Positif):` Korelasi positif ini tidak biasa – bisa jadi insulasi yang dilaporkan bukan mencerminkan efisiensi tinggi, atau ada pengaruh lain.
+  
+**Kesimpulan**
+
+Konsumsi Heating_Oil sangat dipengaruhi oleh suhu, usia penghuni, dan tingkat insulasi rumah.
+
+  *   Semakin dingin suhu dan semakin tua usia penghuni, konsumsi Heating_Oil meningkat.
+  *   Hasil korelasi dengan Insulation tampak berlawanan dengan logika umum (karena biasanya rumah yang terinsulasi baik akan lebih hemat energi), Kemungkinan ada pengaruh lain.
+  
+
+
+**SCATTER PLOT 1**
+```{r}
+# Muat library
+library(ggplot2)
+
+# Baca data
+data <- read.csv("HeatingOil.csv")
+
+# Buat scatter plot
+ggplot(data, aes(x = Heating_Oil, y = Avg_Age, color = Heating_Oil)) +
+  geom_point(size = 3, alpha = 0.8) +
+  scale_color_gradient(low = "blue", high = "red") +
+  labs(title = "Scatter Plot 1: Heating Oil vs Avg Age",
+       x = "Heating Oil Consumption",
+       y = "Average Age of Occupants",
+       color = "Heating Oil") +
+  theme_minimal()
+```
+
+
+**Penjelasan Hasil Scatter Plot 1**
+
+Polanya:
+Jika kamu melihat bahwa titik-titik semakin naik ke atas (usia tinggi) cenderung berwarna merah (Heating Oil tinggi), itu artinya:
+
+  *   Penghuni yang lebih tua cenderung menggunakan lebih banyak Heating Oil.
+  *   Sebaliknya, jika warna merah banyak di bagian bawah grafik (usia muda), berarti pengguna muda yang konsumsi lebih banyak, tetapi berdasarkan korelasi sebelumnya (+0.85), kemungkinan besar pola yang terlihat adalah:**Semakin tua usia penghuni, semakin tinggi konsumsi Heating Oil.**
+  
+  
+
+**SCATTER PLOT 2**
+```{r}
+# Muat library
+library(ggplot2)
+
+# Baca data
+data <- read.csv("HeatingOil.csv")
+
+# Buat scatter plot
+ggplot(data, aes(x = Temperature, y = Insulation, color = Heating_Oil)) +
+  geom_point(size = 3, alpha = 0.8) +
+  scale_color_gradient(low = "blue", high = "red") +
+  labs(title = "Scatter Plot 2: Temperature vs Insulation",
+       x = "Temperature",
+       y = "Insulation",
+       color = "Heating Oil") +
+  theme_minimal()
+```
+
+
+**Penjelasan Hasil Scatter Plot 2**
+
+Berdasarkan scatter plot ini, kamu akan melihat hubungan antara suhu dan insulasi terhadap konsumsi minyak pemanas:
+
+  *   Jika titik-titik di suhu rendah dan insulasi rendah → berwarna merah, maka: Konsumsi Heating Oil tinggi saat suhu dingin dan rumah kurang terinsulasi (logis).
+
+  *   Jika insulasi tinggi justru banyak titik merah, maka: Ada kemungkinan rumah dengan insulasi tinggi tetap boros Heating Oil, bisa karena rumah besar, penghuni lebih tua, atau ada variabel lain.
+  
+  
+
+**REKOMENDASI STRATEGI PEMASARAN UNTUK SARAH**
+
+Berdasarkan hasil analisis korelasi dan dua scatter plot (Heating_Oil vs Avg_Age, dan Temperature vs Insulation), rekomendasi strategi pemasaran yang dapat diberikan kepada Sarah untuk meningkatkan efektivitas promosi produk Heating Oil adalah:
+
+  *   Menargetkan pemasaran kepada penghuni rumah yang lebih tua, seperti Perumahan Pensiunan, Kompleks Warga Senior, Dan Lain-lain (Lakukan pendekatan yang menekankan pada kenyamanan dan kehangatan rumah, karena penghuni lansia cenderung lebih sensitif terhadap suhu dingin).
+  *   Pemasaran ke Wilayah dengan suhu rendah/dingin atau promosi saat menjelang musim dingin.
+  *   Evaluasi Rumah dengan Insulasi Tinggi tapi Tetap Boros, bisa jadi rumah-rumah ini besar, atau penghuni tetap menggunakan pemanas berlebih.
+  
+  
+  
+**SOAL NO 2**
+
+**Yang harus dilakukan Sarah adalah membuat proses untuk:**
+```{r}
+# Load library
+library(readr)
+
+# Baca data asli
+data_sarah <- read_csv("HeatingOil.csv", show_col_types = FALSE)
+
+# Periksa nama kolom
+colnames(data_sarah)
+
+# Buat model regresi
+model <- lm(Heating_Oil ~ Insulation + Temperature + Num_Occupants + Avg_Age + Home_Size, data = data_sarah)
+
+# Simpan model
+saveRDS(model, file = "heating_oil_model.rds")
+```
+
+
+
+**Yang harus dilakukan Marketer adalah membuat proses untuk:**
+```{r}
+# Load library
+library(readr)
+
+# Baca data pelanggan baru
+data_new <- read_csv("HeatingOil-Marketing.csv")
+
+# Load model yang dikirim oleh Sarah
+model <- readRDS("heating_oil_model.rds")
+
+# Prediksi konsumsi heating oil
+prediksi <- predict(model, newdata = data_new)
+
+# Tambahkan hasil ke data
+data_new$Predicted_Heating_Oil <- prediksi
+
+# Lihat hasil prediksi
+head(data_new)
+```
+
+**Hasil & Keamanan Data**
+
+  *   Data asli (HeatingOil.csv) tidak pernah dibagikan ke marketer
+  *   Marketer hanya menggunakan model .rds untuk memprediksi
+  *   Proses ini aman, efisien, dan bisa di-deploy ke banyak cabang
+
+besok lagi belum selesaiiiiilksjdoidooiizzzz
