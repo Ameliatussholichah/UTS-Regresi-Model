@@ -3,10 +3,11 @@
   *   **Nama:** Ameliatus Sholichah
   *   **NIM:** A3202300024
   *   **Matkul:** Regression Model
+<br><br>
 
 **SOAL NO 1**
 
-**MEMBUAT CORRELATION MATRIX**
+**~MEMBUAT CORRELATION MATRIX**
 ```{r}
 # Memuat library
 library(ggplot2)
@@ -34,22 +35,22 @@ ggplot(data = melted_cor, aes(x = Var1, y = Var2, fill = value)) +
 
 ```
 
-**INTERPRETASI CORRELATION MATRIX**
+**~INTERPRETASI CORRELATION MATRIX**
 
-**Penjelasan dari Hasil Correlation Matrix, Variabel yang Memiliki Korelasi Signifikan dengan jumlah Konsumsi Heating_Oil**
+  **Penjelasan dari Hasil Correlation Matrix, Variabel yang Memiliki Korelasi Signifikan dengan jumlah Konsumsi Heating_Oil**
 
   *  `Avg_Age(Positif):` Semakin tua penghuni rumah, makin tinggi penggunaan Heating_Oil. Kemungkinan karena orang yang lebih tua butuh suhu ruangan yang lebih hangat.
   *  `Temperature(Negatif):` Suhu makin rendah (lebih dingin) → penggunaan Heating_Oil makin tinggi. Ini masuk akal dan sangat kuat hubungannya.
   *  `Insulation(Positif):` Korelasi positif ini tidak biasa – bisa jadi insulasi yang dilaporkan bukan mencerminkan efisiensi tinggi, atau ada pengaruh lain.
-  
-**Kesimpulan**
+
+**~KESIMPULAN**
 
 Konsumsi Heating_Oil sangat dipengaruhi oleh suhu, usia penghuni, dan tingkat insulasi rumah.
 
   *   Semakin dingin suhu dan semakin tua usia penghuni, konsumsi Heating_Oil meningkat.
   *   Hasil korelasi dengan Insulation tampak berlawanan dengan logika umum (karena biasanya rumah yang terinsulasi baik akan lebih hemat energi), Kemungkinan ada pengaruh lain.
   
-
+<br><br>
 
 **SCATTER PLOT 1**
 ```{r}
@@ -79,7 +80,7 @@ Jika kamu melihat bahwa titik-titik semakin naik ke atas (usia tinggi) cenderung
   *   Penghuni yang lebih tua cenderung menggunakan lebih banyak Heating Oil.
   *   Sebaliknya, jika warna merah banyak di bagian bawah grafik (usia muda), berarti pengguna muda yang konsumsi lebih banyak, tetapi berdasarkan korelasi sebelumnya (+0.85), kemungkinan besar pola yang terlihat adalah:**Semakin tua usia penghuni, semakin tinggi konsumsi Heating Oil.**
   
-  
+<br><br>
 
 **SCATTER PLOT 2**
 ```{r}
@@ -108,10 +109,9 @@ Berdasarkan scatter plot ini, kamu akan melihat hubungan antara suhu dan insulas
   *   Jika titik-titik di suhu rendah dan insulasi rendah → berwarna merah, maka: Konsumsi Heating Oil tinggi saat suhu dingin dan rumah kurang terinsulasi (logis).
 
   *   Jika insulasi tinggi justru banyak titik merah, maka: Ada kemungkinan rumah dengan insulasi tinggi tetap boros Heating Oil, bisa karena rumah besar, penghuni lebih tua, atau ada variabel lain.
-  
-  
+<br><br>  
 
-**REKOMENDASI STRATEGI PEMASARAN UNTUK SARAH**
+**~REKOMENDASI STRATEGI PEMASARAN UNTUK SARAH**
 
 Berdasarkan hasil analisis korelasi dan dua scatter plot (Heating_Oil vs Avg_Age, dan Temperature vs Insulation), rekomendasi strategi pemasaran yang dapat diberikan kepada Sarah untuk meningkatkan efektivitas promosi produk Heating Oil adalah:
 
@@ -119,11 +119,14 @@ Berdasarkan hasil analisis korelasi dan dua scatter plot (Heating_Oil vs Avg_Age
   *   Pemasaran ke Wilayah dengan suhu rendah/dingin atau promosi saat menjelang musim dingin.
   *   Evaluasi Rumah dengan Insulasi Tinggi tapi Tetap Boros, bisa jadi rumah-rumah ini besar, atau penghuni tetap menggunakan pemanas berlebih.
   
+<br><br>
   
   
 **SOAL NO 2**
 
-**Yang harus dilakukan Sarah adalah membuat proses untuk:**
+**~YANG HARUS DILAKUKAN SARAH ADALAH MEMBUAT PROSES UNTUK:**
+
+  *   **Membaca dataset: HeatingOil.csv**
 ```{r}
 # Load library
 library(readr)
@@ -133,27 +136,51 @@ data_sarah <- read_csv("HeatingOil.csv", show_col_types = FALSE)
 
 # Periksa nama kolom
 colnames(data_sarah)
+```
+
+  *   **Membuat model regresi untuk memprediksi konsumsi minyak (Heating_Oil).**
+
+```{r}
 
 # Buat model regresi
 model <- lm(Heating_Oil ~ Insulation + Temperature + Num_Occupants + Avg_Age + Home_Size, data = data_sarah)
 
+# Menampilkan ringkasan model
+summary(model)
+```
+
+  *   **Menyimpan model agar dapat digunakan oleh marketer tanpa harus membagikan data HeatingOil.csv.**
+
+```{r}
 # Simpan model
 saveRDS(model, file = "heating_oil_model.rds")
 ```
 
+<br><br>
 
 
-**Yang harus dilakukan Marketer adalah membuat proses untuk:**
+**~YANG HARUS DILAKUKAN MARKETER ADALAH MEMBUAT PROSES UNTUK:**
+
+  *   **Membaca model yang sudah disimpan oleh Sarah**
+
 ```{r}
 # Load library
 library(readr)
 
-# Baca data pelanggan baru
-data_new <- read_csv("HeatingOil-Marketing.csv")
-
 # Load model yang dikirim oleh Sarah
 model <- readRDS("heating_oil_model.rds")
+```
 
+  *   **Membaca data calon pelanggan baru: HeatingOil-Marketing.csv**
+  
+```{r}
+# Baca data pelanggan baru
+data_new <- read_csv("HeatingOil-Marketing.csv", show_col_types = FALSE)
+```
+
+  *   **Menerapkan model ke data calon pelanggan baru untuk memprediksi kebutuhan minyak pemanas rumah**
+  
+```{r}
 # Prediksi konsumsi heating oil
 prediksi <- predict(model, newdata = data_new)
 
@@ -164,10 +191,9 @@ data_new$Predicted_Heating_Oil <- prediksi
 head(data_new)
 ```
 
+
 **Hasil & Keamanan Data**
 
   *   Data asli (HeatingOil.csv) tidak pernah dibagikan ke marketer
   *   Marketer hanya menggunakan model .rds untuk memprediksi
   *   Proses ini aman, efisien, dan bisa di-deploy ke banyak cabang
-
-besok lagi belum selesaiiiiilksjdoidooiizzzz
