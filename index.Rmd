@@ -1,11 +1,10 @@
-**JAWABAN UTS-REGRESSION MODEL**
-
-  *   **Nama:** Ameliatus Sholichah
-  *   **NIM:** A3202300024
-  *   **Matkul:** Regression Model
+---
+title: "**JAWABAN UTS-REGRESSION MODEL**"
+author: "**Nama: Ameliatus Sholichah<br>NIM: A3202300024<br>Matkul: Regression Model<br>Institut Teknologi Statistika dan Bisnis Muhammadiyah Semarang**"
+date: "`r Sys.Date()`"
+---
 <br><br>
-
-**SOAL NO 1**
+**SOAL NO 1:**
 
 **~MEMBUAT CORRELATION MATRIX**
 ```{r}
@@ -50,7 +49,7 @@ Konsumsi Heating_Oil sangat dipengaruhi oleh suhu, usia penghuni, dan tingkat in
   *   Semakin dingin suhu dan semakin tua usia penghuni, konsumsi Heating_Oil meningkat.
   *   Hasil korelasi dengan Insulation tampak berlawanan dengan logika umum (karena biasanya rumah yang terinsulasi baik akan lebih hemat energi), Kemungkinan ada pengaruh lain.
   
-<br><br>
+<br>
 
 **SCATTER PLOT 1**
 ```{r}
@@ -80,7 +79,7 @@ Jika kamu melihat bahwa titik-titik semakin naik ke atas (usia tinggi) cenderung
   *   Penghuni yang lebih tua cenderung menggunakan lebih banyak Heating Oil.
   *   Sebaliknya, jika warna merah banyak di bagian bawah grafik (usia muda), berarti pengguna muda yang konsumsi lebih banyak, tetapi berdasarkan korelasi sebelumnya (+0.85), kemungkinan besar pola yang terlihat adalah:**Semakin tua usia penghuni, semakin tinggi konsumsi Heating Oil.**
   
-<br><br>
+<br>
 
 **SCATTER PLOT 2**
 ```{r}
@@ -119,10 +118,10 @@ Berdasarkan hasil analisis korelasi dan dua scatter plot (Heating_Oil vs Avg_Age
   *   Pemasaran ke Wilayah dengan suhu rendah/dingin atau promosi saat menjelang musim dingin.
   *   Evaluasi Rumah dengan Insulasi Tinggi tapi Tetap Boros, bisa jadi rumah-rumah ini besar, atau penghuni tetap menggunakan pemanas berlebih.
   
-<br><br>
+<br><br><br>
   
   
-**SOAL NO 2**
+**SOAL NO 2:**
 
 **~YANG HARUS DILAKUKAN SARAH ADALAH MEMBUAT PROSES UNTUK:**
 
@@ -197,3 +196,7 @@ head(data_new)
   *   Data asli (HeatingOil.csv) tidak pernah dibagikan ke marketer
   *   Marketer hanya menggunakan model .rds untuk memprediksi
   *   Proses ini aman, efisien, dan bisa di-deploy ke banyak cabang
+  
+<br>
+<center>**- -Thank You- -**</center>
+<br>
