@@ -4,9 +4,9 @@ author: "**Nama: Ameliatus Sholichah<br>NIM: A3202300024<br>Matkul: Regression M
 date: "`r Sys.Date()`"
 ---
 <br><br>
-**SOAL NO 1:**
-
-**~MEMBUAT CORRELATION MATRIX**
+**SOAL NO 1:**<br>
+Mari Kita Selesaikan Masalah Sarah dengan Langkah-Langkah berikut:<br>
+**~Langkah 1: MEMBUAT CORRELATION MATRIX**
 ```{r}
 # Memuat library
 library(ggplot2)
@@ -34,15 +34,15 @@ ggplot(data = melted_cor, aes(x = Var1, y = Var2, fill = value)) +
 
 ```
 
-**~INTERPRETASI CORRELATION MATRIX**
+**~Langkah 2: INTERPRETASI CORRELATION MATRIX**
 
-  **Penjelasan dari Hasil Correlation Matrix, Variabel yang Memiliki Korelasi Signifikan dengan jumlah Konsumsi Heating_Oil**
+Penjelasan dari Hasil Correlation Matrix, Variabel yang Memiliki Korelasi Signifikan dengan jumlah Konsumsi Heating_Oil:
 
   *  `Avg_Age(Positif):` Semakin tua penghuni rumah, makin tinggi penggunaan Heating_Oil. Kemungkinan karena orang yang lebih tua butuh suhu ruangan yang lebih hangat.
   *  `Temperature(Negatif):` Suhu makin rendah (lebih dingin) → penggunaan Heating_Oil makin tinggi. Ini masuk akal dan sangat kuat hubungannya.
   *  `Insulation(Positif):` Korelasi positif ini tidak biasa – bisa jadi insulasi yang dilaporkan bukan mencerminkan efisiensi tinggi, atau ada pengaruh lain.
 
-**~KESIMPULAN**
+**KESIMPULAN**
 
 Konsumsi Heating_Oil sangat dipengaruhi oleh suhu, usia penghuni, dan tingkat insulasi rumah.
 
@@ -51,7 +51,7 @@ Konsumsi Heating_Oil sangat dipengaruhi oleh suhu, usia penghuni, dan tingkat in
   
 <br>
 
-**SCATTER PLOT 1**
+**~Langkah 3: SCATTER PLOT 1**
 ```{r}
 # Muat library
 library(ggplot2)
@@ -81,7 +81,7 @@ Jika kamu melihat bahwa titik-titik semakin naik ke atas (usia tinggi) cenderung
   
 <br>
 
-**SCATTER PLOT 2**
+**~Langkah 4: SCATTER PLOT 2**
 ```{r}
 # Muat library
 library(ggplot2)
@@ -110,7 +110,7 @@ Berdasarkan scatter plot ini, kamu akan melihat hubungan antara suhu dan insulas
   *   Jika insulasi tinggi justru banyak titik merah, maka: Ada kemungkinan rumah dengan insulasi tinggi tetap boros Heating Oil, bisa karena rumah besar, penghuni lebih tua, atau ada variabel lain.
 <br><br>  
 
-**~REKOMENDASI STRATEGI PEMASARAN UNTUK SARAH**
+**~Langkah 5: REKOMENDASI STRATEGI PEMASARAN UNTUK SARAH**
 
 Berdasarkan hasil analisis korelasi dan dua scatter plot (Heating_Oil vs Avg_Age, dan Temperature vs Insulation), rekomendasi strategi pemasaran yang dapat diberikan kepada Sarah untuk meningkatkan efektivitas promosi produk Heating Oil adalah:
 
@@ -121,7 +121,12 @@ Berdasarkan hasil analisis korelasi dan dua scatter plot (Heating_Oil vs Avg_Age
 <br><br><br>
   
   
-**SOAL NO 2:**
+**SOAL NO 2:**<br>
+  Kini sarah dipromosikan menjadi VP Marketing. Ia bertanggung jawab atas ratusan marketer yang tersebar di berbagai wilayah. Salah satu tantangan yang dihadapinya adalah Data `HeatingOil.csv` bersifat rahasia dan hanya dapat diakses oleh Sarah (VP). Para marketer tidak boleh langsung melihat dataset tersebut, namun tetap diminta untuk memperkirakan kebutuhan minyak calon pelanggan baru.
+
+  Sarah ingin masing-masing marketer membuat proses yang dapat mengestimasi kebutuhan konsumsi minyak dari client yang mereka approach, dengan menggunakan model yang sebelumnya dihasilkan oleh Sarah, meskipun tanpa mengakses dataset `(HeatingOil.csv)`.
+
+  Data `HeatingOil-Marketing.csv` adalah data calon pelanggan yang berhasil di approach oleh salah satu marketingnya. Untuk mengatasi ini, Sarah ingin membuat model regresi prediktif, menyimpannya, dan mendistribusikan model tersebut ke semua marketer.
 
 **~YANG HARUS DILAKUKAN SARAH ADALAH MEMBUAT PROSES UNTUK:**
 
